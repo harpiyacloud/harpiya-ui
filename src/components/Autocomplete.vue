@@ -1,0 +1,146 @@
+<template>
+  <Combobox v-model="selectedValue" nullable v-slot="{ open: isComboboxOpen }">
+    <Popover class="w-full">
+      <template #target="{ open: openPopover }">
+        <div class="w-full">
+          <ComboboxButton
+            class="flex w-full items-center justify-between rounded-md bg-gray-100 py-1.5 pl-3 pr-2"
+            :class="{ 'rounded-b-none': isComboboxOpen }"
+            @click="
+              () => {
+                openPopover()
+              }
+            "
+          >
+            <span
+              class="overflow-hidden text-ellipsis text-base"
+              v-if="selectedValue"
+            >
+              {{ displayValue(selectedValue) }}
+            </span>
+            <span class="text-base text-gray-500" v-else>
+              {{ placeholder || '' }}
+            </span>
+            <FeatherIcon
+              name="chevron-down"
+              class="h-4 w-4 text-gray-500"
+              aria-hidden="true"
+            />
+          </ComboboxButton>
+        </div>
+      </template>
+      <template #body>
+        <ComboboxOptions
+          class="max-h-[11rem] overflow-y-auto rounded-md rounded-t-none bg-white px-1.5 pb-1.5 shadow-md"
+          static
+          v-show="isComboboxOpen"
+        >
+          <div
+            class="items-st sticky top-0 mb-1.5 flex items-stretch space-x-1.5 bg-white pt-1.5"
+          >
+            <ComboboxInput
+              class="form-input w-full placeholder-gray-500"
+              type="text"
+              @change="
+                (e) => {
+                  query = e.target.value
+                }
+              "
+              :value="query"
+              autocomplete="off"
+              placeholder="Search by keyword"
+            />
+            <Button icon="x" @click="selectedValue = null" />
+          </div>
+          <ComboboxOption
+            as="template"
+            v-for="option in filteredOptions"
+            :key="option.value"
+            :value="option"
+            v-slot="{ active, selected }"
+          >
+            <li
+              :class="[
+                'rounded-md px-2.5 py-1.5 text-base',
+                { 'bg-gray-100': active },
+              ]"
+            >
+              {{ option.label }}
+            </li>
+          </ComboboxOption>
+          <li
+            v-if="filteredOptions.length == 0"
+            class="rounded-md px-2.5 py-1.5 text-base text-gray-600"
+          >
+            No results found
+          </li>
+        </ComboboxOptions>
+      </template>
+    </Popover>
+  </Combobox>
+</template>
+<script>
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxOptions,
+  ComboboxOption,
+  ComboboxButton,
+} from '@headlessui/vue'
+import Popover from './Popover.vue'
+
+export default {
+  name: 'Autocomplete',
+  props: ['modelValue', 'options', 'placeholder'],
+  emits: ['update:modelValue', 'change'],
+  components: {
+    Popover,
+    Combobox,
+    ComboboxInput,
+    ComboboxOptions,
+    ComboboxOption,
+    ComboboxButton,
+  },
+  data() {
+    return {
+      query: '',
+    }
+  },
+  computed: {
+    valuePropPassed() {
+      return 'value' in this.$attrs
+    },
+    selectedValue: {
+      get() {
+        return this.valuePropPassed ? this.$attrs.value : this.modelValue
+      },
+      set(val) {
+        this.query = ''
+        this.$emit(this.valuePropPassed ? 'change' : 'update:modelValue', val)
+      },
+    },
+    filteredOptions() {
+      if (!this.query) {
+        return this.options
+      }
+      return this.options.filter((option) => {
+        let searchTexts = [option.label, option.value]
+        return searchTexts.some((text) =>
+          (text || '')
+            .toString()
+            .toLowerCase()
+            .includes(this.query.toLowerCase())
+        )
+      })
+    },
+  },
+  methods: {
+    displayValue(option) {
+      if (typeof option === 'string') {
+        return option
+      }
+      return option?.label
+    },
+  },
+}
+</script>
