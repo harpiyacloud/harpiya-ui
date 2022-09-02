@@ -1,6 +1,6 @@
 import resources from './resources'
 import call from './call'
-import initSocket from './socketio'
+import socket from './socketio'
 
 let defaultOptions = {
   resources: true,
@@ -18,7 +18,7 @@ export default {
       app.config.globalProperties.$call = callFunction
     }
     if (options.socketio) {
-      app.config.globalProperties.$socket = initSocket(options.socketio)
+      app.config.globalProperties.$socket = socket
     }
   },
 }
