@@ -36,7 +36,7 @@ export {
   createResource,
   createDocumentResource,
   createListResource,
-} from './utils/resources.js'
+} from './resources'
 
 // plugin
-export { default as HarpiyaUI } from './utils/plugin.js'
+export { default as HarpiyaUIUI } from './utils/plugin.js'

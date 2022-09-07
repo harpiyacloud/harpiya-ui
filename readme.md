@@ -1,8 +1,8 @@
-# Harpiya UI
+# HarpiyaUI UI
 
 A set of components and utilities for rapid UI development.
 
-Harpiya UI components are built using Vue 3 and Tailwind. Along with components,
+HarpiyaUI UI components are built using Vue 3 and Tailwind. Along with components,
 it also ships with directives and utilities that make UI development easier.
 
 <details>
@@ -11,24 +11,25 @@ it also ships with directives and utilities that make UI development easier.
 </details>
 
 ## Installation
+
 ```sh
 npm install harpiya-ui
 # or
 yarn add harpiya-ui
 ```
 
-Now, import the HarpiyaUI plugin and components in your Vue app's `main.js`:
+Now, import the HarpiyaUIUI plugin and components in your Vue app's `main.js`:
 
 ```js
-import { createApp } from "vue";
-import { HarpiyaUI, Button } from "harpiya-ui";
-import App from "./App.vue";
-import "./index.css";
+import { createApp } from 'vue'
+import { HarpiyaUIUI, Button } from 'harpiya-ui'
+import App from './App.vue'
+import './index.css'
 
-let app = createApp(App);
-app.use(HarpiyaUI);
-app.component("Button", Button);
-app.mount("#app");
+let app = createApp(App)
+app.use(HarpiyaUIUI)
+app.component('Button', Button)
+app.mount('#app')
 ```
 
 In your `tailwind.config.js` file, include the harpiya-ui preset:
@@ -44,46 +45,51 @@ module.exports = {
 
 ## Components
 
-Harpiya UI ships with a bunch of components. To use a component, you can import it directly from `harpiya-ui`:
+HarpiyaUI UI ships with a bunch of components. To use a component, you can import it directly from `harpiya-ui`:
+
 ```html
 <template>
-    <Button>Click me</Button>
+  <button>Click me</button>
 </template>
 <script>
-import { Button } from 'harpiya-ui';
-export default {
+  import { Button } from 'harpiya-ui'
+  export default {
     components: {
-        Button
-    }
-}
+      Button,
+    },
+  }
 </script>
 ```
 
 You can also register components on the root `app` so that you don't have to import them in every component.
 
 `main.js`
-```js
-import { createApp } from "vue";
-import { Button, Input } from "harpiya-ui";
 
-let app = createApp(App);
-app.component("Button", Button);
-app.component("Input", Input);
-app.mount("#app");
+```js
+import { createApp } from 'vue'
+import { Button, Input } from 'harpiya-ui'
+
+let app = createApp(App)
+app.component('Button', Button)
+app.component('Input', Input)
+app.mount('#app')
 ```
 
 ### Alert
+
 ```html
 <Alert title="Info">Your account has been created.</Alert>
 ```
 
 ### Avatar
+
 ```html
 <Avatar label="John Doe" />
 <Avatar label="John Doe" imageURL="https://picsum.photos/200" />
 ```
 
 ### Badge
+
 ```html
 <Badge>Open</Badge>
 <Badge color="green">Completed</Badge>
@@ -93,106 +99,119 @@ app.mount("#app");
 ```
 
 ### Button
+
 ```html
-<Button>Default</Button>
-<Button type="primary">Primary</Button>
-<Button type="danger">Danger</Button>
-<Button type="white">White</Button>
-<Button icon="x" />
-<Button icon-left="menu">Menu</Button>
-<Button icon-right="external-link">Link</Button>
-<Button :loading="true">Loading</Button>
+<button>Default</button>
+<button type="primary">Primary</button>
+<button type="danger">Danger</button>
+<button type="white">White</button>
+<button icon="x" />
+<button icon-left="menu">Menu</button>
+<button icon-right="external-link">Link</button>
+<button :loading="true">Loading</button>
 ```
 
 ### Card
+
 ```html
 <Card title="Heading" subtitle="Sub text">
-    <div class="text-base">Card content</div>
+  <div class="text-base">Card content</div>
 </Card>
 ```
 
 ### Dialog
+
 The Dialog component uses `teleport` feature and requires `#modals` to exist.
 Make sure you add a `<div id="modals"></div>` before the end of your body tag.
 
 ```html
-<Button @click="dialogOpen = true">Open Dialog</Button>
-<Dialog title="This is Dialog" v-model="dialogOpen">
-    <div class="text-base">Dialog content</div>
-</Dialog>
+<button @click="dialogOpen = true">Open Dialog</button>
+<dialog title="This is Dialog" v-model="dialogOpen">
+  <div class="text-base">Dialog content</div>
+</dialog>
 ```
 
 ### Dropdown
+
 The Dropdown component uses `teleport` feature and requires `#popovers` to exist.
 Make sure you add a `<div id="popovers"></div>` before the end of your body tag.
 
 ```html
 <Dropdown :items="[{ label: 'Option 1' }, { label: 'Option 2' }]">
-    <template v-slot="{ toggleDropdown }">
-        <Button @click="toggleDropdown()">Open Dropdown</Button>
-    </template>
+  <template v-slot="{ toggleDropdown }">
+    <button @click="toggleDropdown()">Open Dropdown</button>
+  </template>
 </Dropdown>
 ```
 
 ### ErrorMessage
+
 ```html
 <ErrorMessage message="There was an error" />
 ```
 
 ### FeatherIcon
+
 Uses [`feather-icons`](https://github.com/feathericons/feather) under the hood.
 
 ```html
-<FeatherIcon class="w-4 h-4" name="menu" />
-<FeatherIcon class="w-4 h-4" name="circle" />
-<FeatherIcon class="w-4 h-4" name="arrow-left" />
-<FeatherIcon class="w-4 h-4" name="arrow-right" />
+<FeatherIcon class="h-4 w-4" name="menu" />
+<FeatherIcon class="h-4 w-4" name="circle" />
+<FeatherIcon class="h-4 w-4" name="arrow-left" />
+<FeatherIcon class="h-4 w-4" name="arrow-right" />
 ```
 
 ### GreenCheckIcon
+
 ```html
-<GreenCheckIcon class="w-4 h-4" />
+<GreenCheckIcon class="h-4 w-4" />
 ```
 
 ### Input
+
 ```html
-<Input label="Text" type="text" value="" placeholder="Text" />
-<Input label="Long Text" type="textarea" value="" placeholder="Textarea" />
-<Input
-    label="Select"
-    type="select"
-    value=""
-    :options="['Option 1', 'Option 2']"
+<input label="Text" type="text" value="" placeholder="Text" />
+<input label="Long Text" type="textarea" value="" placeholder="Textarea" />
+<input
+  label="Select"
+  type="select"
+  value=""
+  :options="['Option 1', 'Option 2']"
 />
-<Input label="Check" type="checkbox" value="" />
+<input label="Check" type="checkbox" value="" />
 ```
 
 ### ListItem
+
 ```html
 <ListItem title="List Item 1" subtitle="Sub text 1">
-    <template #actions>
-        <Button icon="more-horizontal" />
-    </template>
+  <template #actions>
+    <button icon="more-horizontal" />
+  </template>
 </ListItem>
 <ListItem title="List Item 2" subtitle="Sub text 2" />
 ```
 
 ### LoadingIndicator
+
 ```html
 <LoadingIndicator />
 ```
 
 ### LoadingText
+
 ```html
 <LoadingText />
 ```
 
 ### Spinner
+
 ```html
 <Spinner class="w-5" />
 ```
 
 ### SuccessMessage
+
 ```html
 <SuccessMessage message="Completed successfully" />
 ```
@@ -200,6 +219,7 @@ Uses [`feather-icons`](https://github.com/feathericons/feather) under the hood.
 ## Directives
 
 ### onOutsideClick
+
 This directive is used when you want to execute a function when the user clicks outside of a target element. For e.g., when user clicks outside a dropdown, the dropdown should close.
 
 ```html
@@ -209,71 +229,73 @@ This directive is used when you want to execute a function when the user clicks 
 ## Utilities
 
 ### call
-This function wraps `fetch` API. It is built for making web requests to a Harpiya server.
+
+This function wraps `fetch` API. It is built for making web requests to a HarpiyaUI server.
 
 ```js
 call('harpiya.client.get_value', {
-    doctype: 'ToDo',
-    filters: {name: 'adsfasdf'},
-    fieldname: 'description'
+  doctype: 'ToDo',
+  filters: { name: 'adsfasdf' },
+  fieldname: 'description',
 })
 ```
 
 ### resources
-This is a helper for managing async data fetching in Vue apps that work with a Harpiya backend.
+
+This is a helper for managing async data fetching in Vue apps that work with a HarpiyaUI backend.
 
 ```html
 <template>
-    <div>
-        <LoadingText v-if="$resources.todos.loading" />
-        <div
-            v-for="todo in $resources.todos.data || []"
-            :key="todo.name"
-        >
-            <div>{{ todo.description }}</div>
-            <Badge>{{ todo.status }}</Badge>
-        </div>
-        <ErrorMessage message="$resources.todos.error" />
+  <div>
+    <LoadingText v-if="$resources.todos.loading" />
+    <div v-for="todo in $resources.todos.data || []" :key="todo.name">
+      <div>{{ todo.description }}</div>
+      <Badge>{{ todo.status }}</Badge>
     </div>
+    <ErrorMessage message="$resources.todos.error" />
+  </div>
 </template>
 <script>
-import { Badge, LoadingText, ErrorMessage } from 'harpiya-ui';
+  import { Badge, LoadingText, ErrorMessage } from 'harpiya-ui'
 
-export default {
+  export default {
     name: 'ToDos',
     resources: {
-        todos: {
-            method: 'harpiya.client.get_list',
-            params: {
-                doctype: 'ToDo',
-                fields: ['*']
-            }
-        }
+      todos: {
+        method: 'harpiya.client.get_list',
+        params: {
+          doctype: 'ToDo',
+          fields: ['*'],
+        },
+      },
     },
     components: {
-        Badge,
-        LoadingText,
-        ErrorMessage
-    }
-}
+      Badge,
+      LoadingText,
+      ErrorMessage,
+    },
+  }
 </script>
 ```
 
 ### socketio
 
-This module pre-configures a socketio instance on the port 9000. If you install the HarpiyaUI plugin, `this.$socket` will be available in all Vue components.
+This module pre-configures a socketio instance on the port 9000. If you install the HarpiyaUIUI plugin, `this.$socket` will be available in all Vue components.
 
 Usage:
+
 ```js
 this.$socket.on('list_update', (data) => {
-    // handle list update event
-});
+  // handle list update event
+})
 ```
 
 ### tailwind.config
-This is a [tailwind preset](https://tailwindcss.com/docs/presets) that customizes the standard tailwind config to include Harpiya design tokens.
+
+This is a [tailwind preset](https://tailwindcss.com/docs/presets) that customizes the standard tailwind config to include HarpiyaUI design tokens.
 
 Usage:
+
 ```js
 module.exports = {
   presets: [
@@ -284,35 +306,39 @@ module.exports = {
 ```
 
 ## Vue Plugin
+
 Vue plugin that installs call, resources and socketio in your Vue app
 
 `main.js`
-```js
-import { createApp } from "vue";
-import { HarpiyaUI } from "harpiya-ui";
-import App from "./App.vue";
 
-let app = createApp(App);
-app.use(HarpiyaUI);
-app.mount("#app");
+```js
+import { createApp } from 'vue'
+import { HarpiyaUIUI } from 'harpiya-ui'
+import App from './App.vue'
+
+let app = createApp(App)
+app.use(HarpiyaUIUI)
+app.mount('#app')
 ```
 
 You can now use these features in your Vue components.
+
 ```html
 <script>
-export default {
+  export default {
     resources: {
-        ping: 'harpiya.handler.ping'
+      ping: 'harpiya.handler.ping',
     },
     mounted() {
-        this.$call('ping');
-        this.$socket.on('list_update', (data) => {
-            // handle list update event
-        });
-    }
-}
+      this.$call('ping')
+      this.$socket.on('list_update', (data) => {
+        // handle list update event
+      })
+    },
+  }
 </script>
 ```
 
 ## License
+
 MIT
