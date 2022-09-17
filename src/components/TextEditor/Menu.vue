@@ -88,7 +88,8 @@ import { Popover, Dialog, Input, Button } from 'harpiya-ui'
 import InsertImage from './InsertImage.vue'
 export default {
   name: 'TipTapMenu',
-  props: ['editor', 'buttons'],
+  props: ['buttons'],
+  inject: ['editor'],
   components: {
     Popover,
     Dialog,

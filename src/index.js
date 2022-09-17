@@ -27,6 +27,7 @@ export { default as Tooltip } from './components/Tooltip.vue'
 
 // directives
 export { default as onOutsideClickDirective } from './directives/onOutsideClick.js'
+export { default as visibilityDirective } from './directives/visibility.js'
 
 // utilities
 export { default as call, createCall } from './utils/call.js'
@@ -39,4 +40,4 @@ export {
 } from './resources'
 
 // plugin
-export { default as HarpiyaUIUI } from './utils/plugin.js'
+export { default as HarpiyaUI } from './utils/plugin.js'

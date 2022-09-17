@@ -129,6 +129,7 @@ export function createResource(options, vm, getResource) {
   }
 
   function handleError(error, errorFunctions) {
+    out.loading = false
     if (out.previousData) {
       out.data = out.previousData
     }
